@@ -1,0 +1,21 @@
+{
+  "name": "llm-market-news-sentiment-digest",
+  "version": "0.1.0",
+  "private": true,
+  "description": "LLM Market News Sentiment Digest: Vue 3 + Supabase + Make.com app that turns market news into AI sentiment briefings for a watchlist.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.119.0",
+    "vue": "^3.5.45",
+    "vue-router": "^5.5.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.11",
+    "vite": "^8.3.8"
+  }
+}

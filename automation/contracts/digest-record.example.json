@@ -1,0 +1,33 @@
+{
+  "id": "0b8f5e1a-7c2d-4f3e-8a9b-0c1d2e3f4a5b",
+  "created_at": "2026-11-14T08:30:12.345Z",
+  "watchlist_id": "6f1c2a8e-3b4d-4c5e-9f10-123456789abc",
+  "status": "ok",
+  "error_message": null,
+  "tone": "positive",
+  "summary": "Coverage of NVIDIA is upbeat, led by reports of strong data-center demand and new cloud partnerships. Analysts flag supply constraints as the main near-term risk.",
+  "key_points": [
+    "Data-center demand remains the dominant theme in coverage",
+    "Several outlets report new cloud partnerships",
+    "Analysts cite chip supply limits as the key near-term risk"
+  ],
+  "headline_count": 2,
+  "headlines": [
+    {
+      "title": "NVIDIA data-center orders stay strong, analysts say - Demo Markets Wire",
+      "link": "https://example.com/demo/nvda-1",
+      "source": "Demo Markets Wire",
+      "published_at": "Fri, 14 Nov 2026 07:05:00 GMT"
+    },
+    {
+      "title": "Cloud providers expand AI capacity deals with NVIDIA - Sample Tech Daily",
+      "link": "https://example.com/demo/nvda-2",
+      "source": "Sample Tech Daily",
+      "published_at": "Fri, 14 Nov 2026 04:30:00 GMT"
+    }
+  ],
+  "ai_provider": "gemini",
+  "ai_model": "gemini-2.5-flash",
+  "prompt_version": "v1",
+  "news_source": "google_news_rss"
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://llm-market-news-sentiment-digest.local/contracts/digest-record.schema.json",
+  "title": "Digest record contract (news_digests row)",
+  "description": "The shape of one news_digests row. Whatever automation writes digests (Make, n8n, an Edge Function...) must write this; the Vue app reads only this. Mirrors supabase/schema.sql. id and created_at are filled by the database.",
+  "type": "object",
+  "required": ["watchlist_id", "status", "ai_provider", "ai_model", "prompt_version", "news_source"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid", "description": "Set by the database." },
+    "created_at": { "type": "string", "format": "date-time", "description": "Set by the database." },
+    "watchlist_id": { "type": "string", "format": "uuid", "description": "watchlist.id from the webhook payload (record.id)." },
+    "status": { "type": "string", "enum": ["ok", "failed"] },
+    "error_message": { "type": ["string", "null"], "description": "Required when status = failed." },
+    "tone": { "type": ["string", "null"], "enum": ["positive", "neutral", "negative", null] },
+    "summary": { "type": ["string", "null"] },
+    "key_points": {
+      "type": ["array", "null"],
+      "items": { "type": "string" },
+      "minItems": 3,
+      "maxItems": 5
+    },
+    "headline_count": { "type": ["integer", "null"], "minimum": 0, "description": "Filled from headlines by a DB trigger if omitted." },
+    "headlines": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "required": ["title", "link", "source", "published_at"],
+        "properties": {
+          "title": { "type": "string" },
+          "link": { "type": "string", "description": "http(s) URL of the article." },
+          "source": { "type": "string", "description": "Publisher name." },
+          "published_at": { "type": ["string", "null"], "description": "Publish date as given by the feed (ISO 8601 or RFC 822)." }
+        }
+      }
+    },
+    "ai_provider": { "type": "string", "description": "Traceability, e.g. gemini, openai." },
+    "ai_model": { "type": "string", "description": "Traceability: exact model ID, e.g. gemini-2.5-flash." },
+    "prompt_version": { "type": "string", "pattern": "^v[0-9]+$", "description": "Matches automation/prompts/digest.<version>.md." },
+    "news_source": { "type": "string", "description": "Traceability, e.g. google_news_rss, newsapi." }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "ok" } } },
+      "then": {
+        "required": ["tone", "summary", "key_points"],
+        "properties": {
+          "tone": { "type": "string" },
+          "summary": { "type": "string" },
+          "key_points": { "type": "array" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "const": "failed" } } },
+      "then": { "required": ["error_message"], "properties": { "error_message": { "type": "string" } } }
+    }
+  ],
+  "examples": [
+    {
+      "watchlist_id": "6f1c2a8e-3b4d-4c5e-9f10-123456789abc",
+      "status": "failed",
+      "error_message": "Gemini: 429 Resource has been exhausted (quota).",
+      "tone": null,
+      "summary": null,
+      "key_points": null,
+      "headline_count": 8,
+      "headlines": null,
+      "ai_provider": "gemini",
+      "ai_model": "gemini-2.5-flash",
+      "prompt_version": "v1",
+      "news_source": "google_news_rss"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://llm-market-news-sentiment-digest.local/contracts/ai-output.schema.json",
+  "title": "AI output contract",
+  "description": "The JSON object ANY AI model must return for one digest. Produced by the AI step (Make step 8), parsed in step 9, mapped into news_digests in step 10. Swapping the AI provider is safe as long as its output validates against this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tone", "summary", "key_points"],
+  "properties": {
+    "tone": {
+      "description": "Overall tone of the headlines for this asset. Lowercase.",
+      "type": "string",
+      "enum": ["positive", "neutral", "negative"]
+    },
+    "summary": {
+      "description": "2-3 sentence briefing, max ~60 words. No investment advice.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 600
+    },
+    "key_points": {
+      "description": "3-5 short bullet points, most important first.",
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      }
+    }
+  },
+  "examples": [
+    {
+      "tone": "positive",
+      "summary": "Coverage of NVIDIA is upbeat, led by reports of strong data-center demand and new cloud partnerships. Analysts flag supply constraints as the main near-term risk.",
+      "key_points": [
+        "Data-center demand remains the dominant theme in coverage",
+        "Several outlets report new cloud partnerships",
+        "Analysts cite chip supply limits as the key near-term risk"
+      ]
+    }
+  ]
+}
