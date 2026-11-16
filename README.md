@@ -1,5 +1,7 @@
 # LLM Market News Sentiment Digest
 ![Uploading 1_vue_add_record_form.png…]()
+<img width="1920" height="1080" alt="4_vue_dashboard" src="https://github.com/user-attachments/assets/80ff9b41-9bc3-4511-bdce-354b3d9d3dc0" />
+
 
 **LLM Market News Sentiment Digest** is a Vue 3 web app that turns the day's news into short, AI-written
 sentiment briefings for a personal stock and crypto watchlist. Users add an asset; a Supabase Database Webhook
