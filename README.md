@@ -12,38 +12,48 @@ provider, model, prompt version and news source produced it.
 
 ## Screenshots
 
-> The screenshots below were captured by running the Vue app locally against a mocked Supabase API
-> (the demo rows from `supabase/seed.sql`). All headlines, sources and `example.com` links are fictional
-> demo data; no real Supabase project, Make.com scenario or Gemini call was involved.
+### Screenshots from the running app
+
+These are screenshots of the app running with a live Supabase setup. They show the add-asset form, the dashboard and an asset detail page with a digest ready.
+
+**Add asset** form:
+
+<img width="900" alt="Add asset form (add record form)" src="https://github.com/user-attachments/assets/187caa80-4a28-4882-a7c0-cec3970e2fe9" />
+
+**Dashboard** (first capture):
+
+<img width="900" alt="Dashboard, first capture" src="https://github.com/user-attachments/assets/80ff9b41-9bc3-4511-bdce-354b3d9d3dc0" />
+
+**Asset detail** with the digest ready:
+
+<img width="900" alt="Asset detail page with digest ready" src="https://github.com/user-attachments/assets/ddd2555c-108d-432c-b319-7445e3e5499a" />
+
+**Dashboard** (second capture):
+
+<img width="900" alt="Dashboard, second capture" src="https://github.com/user-attachments/assets/67a3a6df-f7b8-4df0-9862-06588116f411" />
+
+### Additional views (mocked demo data)
+
+The images below were captured by running the Vue app locally against a mocked Supabase API
+(the demo rows from `supabase/seed.sql`). All headlines, sources and `example.com` links are fictional
+demo data; no real Supabase project, Make.com scenario or Gemini call was involved. They cover the empty
+state and the phone layout, and repeat the main screens with fictional data.
 
 **Dashboard** with the market-mood summary and the watchlist (tone and first lines of each briefing):
 
-<img src="docs/images/dashboard.png" alt="Dashboard with market mood tiles and watchlist cards for BTC, NVDA, TSLA and ETH" width="900" />
+<img src="docs/images/dashboard.png" alt="Dashboard with market mood tiles and watchlist cards for BTC, NVDA, TSLA and ETH (mocked demo data)" width="900" />
 
 **Asset detail**: latest digest, tone, key points, source headlines and the provider / model / prompt version line:
 
-<img src="docs/images/asset-detail.png" alt="NVDA detail page with digest summary, positive tone, key points and source headlines" width="900" />
+<img src="docs/images/asset-detail.png" alt="NVDA detail page with digest summary, positive tone, key points and source headlines (mocked demo data)" width="900" />
 
 **Add asset** form and the **empty watchlist** state:
 
-<img src="docs/images/add-asset.png" alt="Add asset form with live preview" width="440" /> <img src="docs/images/dashboard-empty.png" alt="Empty watchlist state" width="440" />
+<img src="docs/images/add-asset.png" alt="Add asset form with live preview (mocked demo data)" width="440" /> <img src="docs/images/dashboard-empty.png" alt="Empty watchlist state (mocked demo data)" width="440" />
 
 **Mobile** (390 px wide, dashboard and asset detail, top of page):
 
-<img src="docs/images/dashboard-mobile.png" alt="Dashboard on a phone" width="260" /> <img src="docs/images/asset-detail-mobile.png" alt="Asset detail on a phone" width="260" />
-
-<details>
-<summary>Earlier screenshots from a live Supabase setup</summary>
-
-<img width="1920" height="1080" alt="1_vue_add_record_form" src="https://github.com/user-attachments/assets/187caa80-4a28-4882-a7c0-cec3970e2fe9" />
-
-<img width="1920" height="1080" alt="4_vue_dashboard" src="https://github.com/user-attachments/assets/80ff9b41-9bc3-4511-bdce-354b3d9d3dc0" />
-
-<img width="1920" height="1080" alt="3_vue_detail_digest_ready" src="https://github.com/user-attachments/assets/ddd2555c-108d-432c-b319-7445e3e5499a" />
-
-<img width="1920" height="1080" alt="4_vue_dashboard" src="https://github.com/user-attachments/assets/67a3a6df-f7b8-4df0-9862-06588116f411" />
-
-</details>
+<img src="docs/images/dashboard-mobile.png" alt="Dashboard on a phone (mocked demo data)" width="260" /> <img src="docs/images/asset-detail-mobile.png" alt="Asset detail on a phone (mocked demo data)" width="260" />
 
 ## Table of contents
 
