@@ -1,6 +1,12 @@
 # LLM Market News Sentiment Digest
-![Uploading 1_vue_add_record_form.png…]()
+<img width="1920" height="1080" alt="1_vue_add_record_form" src="https://github.com/user-attachments/assets/187caa80-4a28-4882-a7c0-cec3970e2fe9" />
+
 <img width="1920" height="1080" alt="4_vue_dashboard" src="https://github.com/user-attachments/assets/80ff9b41-9bc3-4511-bdce-354b3d9d3dc0" />
+
+<img width="1920" height="1080" alt="3_vue_detail_digest_ready" src="https://github.com/user-attachments/assets/ddd2555c-108d-432c-b319-7445e3e5499a" />
+
+<img width="1920" height="1080" alt="4_vue_dashboard" src="https://github.com/user-attachments/assets/67a3a6df-f7b8-4df0-9862-06588116f411" />
+
 
 
 **LLM Market News Sentiment Digest** is a Vue 3 web app that turns the day's news into short, AI-written
