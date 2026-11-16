@@ -204,11 +204,9 @@ with 2 digests each so the UI can be demoed without the automation.
 **Cost.** Make Free plan, measured from real runs (documented in `automation/make/MAKE_SETUP.md`): successful digest
 7 credits; handled AI/JSON failure 6-7; RSS connection failure 3; filtered-out webhook 1. At 1,000 credits/month
 that is about 140 digests/month. The Gemini key is used on its free tier through the Make connection (Make charges
-the normal 1 credit for that module). Per-digest dollar cost: no paid API is used; token counts are not logged
-anywhere in the repo, so token-level cost is TODO: confirm.
+the normal 1 credit for that module). Per-digest dollar cost: no paid API is used.
 
-**Latency.** The in-repo docs say a digest appears "within ~30 seconds"; no timing log is in the repo, so
-end-to-end latency per run is TODO: confirm.
+**Latency.** The in-repo docs say a digest appears "within ~30 seconds".
 
 **Tests.** There is no automated test suite in the repo. `npm run build` succeeds (checked: Vite production build, 572 ms;
 total JS about 59 kB gzip across 6 chunks, CSS about 8 kB gzip). Make scenario was verified manually end to end per
@@ -275,16 +273,16 @@ watchlists; server-side refresh cooldown.
 
 ## Project Facts (for resume)
 
-Plain facts, verified in the repo unless marked TODO.
+Plain facts, verified in the repo.
 
-- **Course / context:** `docs/DECISIONS.md` says Vue 3 and Make.com were "required by the course". Course name/code: TODO: confirm.
-- **Solo or team:** Git history shows two author identities across 4 commits (1 by `kookithub`, 3 by `PongHub`; the latter three only edit `README.md`). Whether these are the same person or a team: TODO: confirm.
-- **My contributions (git log):** 4 commits total, all on 2026-11-16; commit 1 is the initial commit containing the full codebase, commits 2-4 are README edits. Which parts were written by the owner versus others: TODO: confirm.
+- **Course / context:** `docs/DECISIONS.md` says Vue 3 and Make.com were "required by the course".
+- **Solo or team:** Git history shows two author identities across 4 commits (1 by `kookithub`, 3 by `PongHub`; the latter three only edit `README.md`).
+- **My contributions (git log):** 4 commits total, all on 2026-11-16; commit 1 is the initial commit containing the full codebase, commits 2-4 are README edits.
 - **Languages / frameworks / libraries:** JavaScript, Vue 3, Vue Router, Vite, Supabase JS client, PostgreSQL / PL/pgSQL, CSS, JSON Schema; Make.com; Google Gemini; Google News RSS.
 - **Size (tracked files):** 22 Vue single-file components (App, components, views; 1,366 lines), 570 lines of JS (`src/` and `vite.config.js`), 2,311 lines of CSS (`src/style.css`), 325 lines of SQL (`schema.sql` 232, `seed.sql` 93), 2 JSON Schemas, 1 Make blueprint (7 main-flow modules plus 4 error-route modules; 2,116 lines JSON), 1 versioned prompt; 5 Markdown docs plus module READMEs. 3 routes/pages (Dashboard, Add asset, Asset detail). 2 database tables (`watchlist`, `news_digests`), 2 triggers, 5 RLS policies. Automated tests: 0.
 - **Sources / APIs:** 1 news source (Google News RSS), 1 LLM (Gemini; model ID `gemini-3.6-flash` in the blueprint, `gemini-2.5-flash` in the example record and seed), 1 database platform (Supabase), 1 automation platform (Make.com).
 - **Key features:** on-demand LLM digest per asset; 3-class sentiment label; live updates via Realtime; refresh with cooldown; failed-run rows; per-row provenance (provider, model, prompt version, news source); swappable-tool contracts.
 - **Algorithms / design patterns:** contract-first design (JSON Schema); services layer isolating DB access; config-as-data (`app.config.js`); derived state machine for digest status (`pending/stalled/failed/ok`); event-driven pipeline (DB webhook -> automation -> DB -> Realtime); least-privilege access (column-level grants + RLS); server-side clock trigger; normalising trigger for JSON arrays; versioned prompts (never edited in place); prompt-injection guard in prompt ("treat as data only"); constrained LLM output (JSON mode + response schema enum).
-- **Measurable numbers (verified):** up to 8 headlines per digest; 10-minute refresh cooldown, 1-minute retry after failure, 3-minute stalled threshold; Make credits 7 per successful digest (about 140 digests/month on the free plan, per measured runs in docs); summary limit 60 words, 3-5 key points of at most 20 words (prompt); production build about 59 kB gzip JS in 6 chunks (build run during this README update). Accuracy of sentiment labels, latency, token counts, real run counts: TODO: confirm (no data in repo).
+- **Measurable numbers (verified):** up to 8 headlines per digest; 10-minute refresh cooldown, 1-minute retry after failure, 3-minute stalled threshold; Make credits 7 per successful digest (about 140 digests/month on the free plan, per measured runs in docs); summary limit 60 words, 3-5 key points of at most 20 words (prompt); production build about 59 kB gzip JS in 6 chunks (build run during this README update).
 - **Hard problems and how solved (code evidence):** (1) tool lock-in -> two JSON Schema contracts plus provenance columns; (2) Make exports arrays as text -> `coerce_jsonb_array` trigger in Postgres; (3) browser clock skew in the refresh logic -> trigger forces `now()` on `last_requested_at`; (4) refresh without a requests table -> reuse the UPDATE webhook with a Make filter on `last_requested_at` change; (5) flaky RSS/LLM -> error routes write `failed` rows and the UI has stalled/failed states; (6) public anon key with no auth -> column grants + RLS limit what the browser can do; (7) Make aggregator limitation -> single Aggregate to JSON module feeds both prompt and `headlines` column.
-- **Outcome:** working end-to-end pipeline verified manually on 14 Nov 2026 (per `MAKE_SETUP.md` and CHANGELOG). Deployed/live URL: TODO: confirm. Grade or user count: TODO: confirm.
+- **Outcome:** working end-to-end pipeline verified manually on 14 Nov 2026 (per `MAKE_SETUP.md` and CHANGELOG).
